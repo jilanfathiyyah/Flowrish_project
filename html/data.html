@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Product - Flowrish</title>
+    <!--link bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--link css-->
+    <link rel="stylesheet" href="../css/data.css">
+</head>
+<body>
+  <!--tabel-->
+  <div class="container py-5">
+      <div class="d-flex justify-content-between align-items-center">
+          <h3 class="m-0 fw-bold" ><span>Barang Gudang</span></h3>
+          <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal" data-bs-target="#modalBarang">
+              + Tambah Produk
+          </button>
+      </div>
+
+      <div class="table-container">
+          <table class="table m-0">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nama Produk</th>
+                      <th>Kategori</th>
+                      <th>Stok</th>
+                      <th>Harga</th>
+                      <th>Tanggal Masuk</th>
+                      <th>Tanggal Kadaluarsa</th>
+                      <th>Lokasi Rak</th>
+                      <th>ero ero nu</th>
+                  </tr>
+              </thead>
+              <tbody id="isiTabel">
+                  <tr>
+                      <td>1</td>
+                      <td>Mawar Merah</td>
+                      <td>Bunga Tangkai</td>
+                      <td>12</td>
+                      <td>Rp 50.000</td>
+                      <td>2026-05-01</td>
+                      <td>2026-05-06</td>
+                      <td>Rak A-1</td>
+                      <td class="justify-center">
+                          <button href="update.html"
+                            class="btn btn-action btn-update">
+                              <i class="bi bi-pencil-square"></i>
+                          </button>
+                          <button class="btn btn-action btn-delete">
+                              <i class="bi bi-trash"></i>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!--penutup tabel-->
+
+  <!--modal tambah produk-->
+
+  <div class="modal fade" id="modalBarang" tabindex="-1" aria-labelledby="modalBarangLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBarangLabel">Tambah Data Produk</h5>
+        </div>
+
+        <div class="modal-body">
+          <form id="formGudang">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Masukkan nama produk">
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Kategori <span class="text-danger"></span></label>
+                <select class="form-select" required>
+                  <option value="selected disabled">Pilih Kategori</option>
+                  <option value="bunga_tangkai">Bunga Tangkai</option>
+                  <option value="tanaman_hias">Tanaman Hias</option>
+                  <option value="alat_kebun">Alat Kebun</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" placeholder="0" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="50.000" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" >
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-batal" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" form="formGudang" class="btn btn-simpan">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--penutup modal tambah produk-->
+  
+  <!--modal update produk-->
+  <div class="modal fade" id="modalBarang" tabindex="-1" aria-labelledby="modalBarangLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalBarangLabel">Tambah Data Produk</h5>
+        </div>
+
+        <div class="modal-body">
+          <form id="formGudang">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Masukkan nama produk">
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Kategori <span class="text-danger"></span></label>
+                <select class="form-select" required>
+                  <option value="selected disabled">Pilih Kategori</option>
+                  <option value="bunga_tangkai">Bunga Tangkai</option>
+                  <option value="tanaman_hias">Tanaman Hias</option>
+                  <option value="alat_kebun">Alat Kebun</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" placeholder="0" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="50.000" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" >
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" >
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-batal" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" form="formGudang" class="btn btn-simpan">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--penutup modal update produk-->
+
+  <!--link js-->
+  <script src="/js/tambah.js"></script>
+
+
+</body>
+</html>

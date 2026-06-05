@@ -1,0 +1,58 @@
+*{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: var(--color-secondary);
+  background-color: var(--color-bg);
+}
+
+:root {
+  --color-bg: #c7b091; /* warna background */
+  --color-primary: #43512d; /* warna tombol dan font*/
+  --color-secondary: #ada68a; /* warna nama kolum*/
+  --color-accent: #89836b; /*  */
+  --color-border: #798763; /*  */
+}
+.jumbotron{
+  padding-top:2rem;
+  background-color: #5c85f8;
+  color: #ffff;
+}
+.img-fluid {
+  width: auto; 
+  height: auto; 
+  margin: 10px;
+  border-radius: 30px; 
+}
+.banner-overlay{
+  position:absolute;
+  transform: translateX(-50%);
+  left:50%;
+  top: 40%;
+  color:#ffffff;
+  background: none;
+
+}
+
+.banner-overlay h1{
+  font-size:60px;
+  margin:0 0 8px;
+  background: none;
+}
+
+.banner-overlay h6{
+  font-size:40px;
+  margin:0 0 8px;
+  background: none;
+  text-decoration-line: underline;
+}
+
+.banner-overlay p{
+  margin:0;
+  font-size:30px;
+  opacity:0.95;
+  background: none;
+  color: #ffffff;
+}
+.btn{
+  background-color:var(--color-primary);
+  color: #ffff;
+}
