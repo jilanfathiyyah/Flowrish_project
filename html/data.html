@@ -16,7 +16,7 @@
   <div class="container py-5">
       <div class="d-flex justify-content-between align-items-center">
           <h3 class="m-0 fw-bold" ><span>Barang Gudang</span></h3>
-          <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal" data-bs-target="#modalBarang">
+          <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal">
               + Tambah Produk
           </button>
       </div>
@@ -47,11 +47,11 @@
                       <td>2026-05-06</td>
                       <td>Rak A-1</td>
                       <td class="justify-center">
-                          <button href="update.html"
+                          <button href="update.html" data-bs-toggle="modal" data-bs-target="#modalUpdateBarang"
                             class="btn btn-action btn-update">
                               <i class="bi bi-pencil-square"></i>
                           </button>
-                          <button class="btn btn-action btn-delete">
+                          <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" onclick="hapusProduk(this)">
                               <i class="bi bi-trash"></i>
                           </button>
                       </td>
@@ -64,10 +64,10 @@
 
   <!--modal tambah produk-->
 
-  <div class="modal fade" id="modalBarang" tabindex="-1" aria-labelledby="modalBarangLabel" aria-hidden="true">
+  <div class="modal fade" id="modalBarang"  >
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        
+
         <div class="modal-header">
           <h5 class="modal-title" id="modalBarangLabel">Tambah Data Produk</h5>
         </div>
@@ -126,18 +126,18 @@
     </div>
   </div>
   <!--penutup modal tambah produk-->
-  
+
   <!--modal update produk-->
-  <div class="modal fade" id="modalBarang" tabindex="-1" aria-labelledby="modalBarangLabel" aria-hidden="true">
+  <div class="modal fade" id="modalUpdateBarang" tabindex="-1" aria-labelledby="modalBarangLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         
         <div class="modal-header">
-          <h5 class="modal-title" id="modalBarangLabel">Tambah Data Produk</h5>
+          <h5 class="modal-title" id="modalBarangLabel">Ubah Data Produk</h5>
         </div>
 
         <div class="modal-body">
-          <form id="formGudang">
+          <form id="formUpdateGudang">
             <div class="row g-4">
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
@@ -183,17 +183,34 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-batal" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" form="formGudang" class="btn btn-simpan">Simpan</button>
+          <button type="button" class="btn btn-batal" data-bs-dismiss="modal" style="width: 23%;">Batalkan Perubahan</button>
+          <button type="submit" form="formUpdateGudang" class="btn btn-simpan" style="width: 23%;">Simpan Perubahan</button>
         </div>
-      </div>`
+      </div>
     </div>
   </div>
+
   <!--penutup modal update produk-->
 
+  <!--pembuka modal hapus data-->
+  <div class="modal fade" id="modalHapusBarang" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm"> <div class="modal-content text-center p-3">
+            <div class="modal-body">
+                <i class="bi bi-exclamation-circle text-danger" style="font-size: 3rem;"></i>
+                <h5 class="mt-3 fw-bold">Apakah anda yakin ingin menghapus data ini?</h5>
+            </div>
+            <div class="d-flex justify-content-center gap-2">
+                <button type="button" class="btn btn-simpan shadow-none" style="width: 30%;" data-bs-dismiss="modal">Batal</button>
+                <button type="button" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--penutup modal hapus data-->
   <!--link js-->
   <script src="/js/tambah.js"></script>
-
+  <script src="/js/updatedata.js"></script>
+  <script src="/js/hapusdata.js"></script>
 
 </body>
 </html>

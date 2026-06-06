@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // 3. Reset isi form agar bersih kembali
         formGudang.reset();
         
-        // 4. (Opsional) Beri feedback sederhana bahwa tombol bekerja
-        alert(' Sabar ya! Fitur ini akan segera terhubung ke Database');
     });
 
     // Reset form jika user klik tombol "Batal" atau tanda "X"
