@@ -1,3 +1,4 @@
+<?php include 'php/pagination.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!--link css-->
-    <link rel="stylesheet" href="../css/data.css">
+    <link rel="stylesheet" href="css/data.css">
 </head>
 <body>
   <!--tabel-->
@@ -33,21 +34,25 @@
                       <th>Tanggal Masuk</th>
                       <th>Tanggal Kadaluarsa</th>
                       <th>Lokasi Rak</th>
-                      <th>ero ero nu</th>
+                      <th>Aksi</th>
                   </tr>
               </thead>
               <tbody id="isiTabel">
+                <?php
+                  $no = $halaman_awal + 1;
+                  while($data = mysqli_fetch_array ($query_data)) {
+                ?>
                   <tr>
-                      <td>1</td>
-                      <td>Mawar Merah</td>
-                      <td>Bunga Tangkai</td>
-                      <td>12</td>
-                      <td>Rp 50.000</td>
-                      <td>2026-05-01</td>
-                      <td>2026-05-06</td>
-                      <td>Rak A-1</td>
+                      <td><?php echo $no++; ?></td>
+                      <td><?php echo $data['produk']; ?></td>
+                      <td><?php echo $data['kategori']; ?></td>
+                      <td><?php echo $data['stok']; ?></td>
+                      <td><?php echo $data['harga']; ?></td>
+                      <td><?php echo $data['tanggal_masuk']; ?></td>
+                      <td><?php echo $data['tanggal_expired']; ?></td>
+                      <td><?php echo $data['lokasi_rak']; ?></td>
                       <td class="justify-center">
-                          <button href="update.html" data-bs-toggle="modal" data-bs-target="#modalUpdateBarang"
+                          <button href="#formUpdateGudang?id=<?php echo $data['id']; ?>" data-bs-toggle="modal" data-bs-target="#modalUpdateBarang"
                             class="btn btn-action btn-update">
                               <i class="bi bi-pencil-square"></i>
                           </button>
@@ -56,6 +61,8 @@
                           </button>
                       </td>
                   </tr>
+                <?php
+                }?>
               </tbody>
           </table>
       </div>
@@ -73,46 +80,48 @@
         </div>
 
         <div class="modal-body">
-          <form id="formGudang">
+          <form action="php/proses.php" method="POST" id="formGudang">
             <div class="row g-4">
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Masukkan nama produk">
+                <input type="text" name="produk" class="form-control" placdeholer="Masukkan nama produk">
               </div>
               
               <div class="col-md-6">
                 <label class="form-label">Kategori <span class="text-danger"></span></label>
-                <select class="form-select" required>
+                <select name="kategori" class="form-select" required>
                   <option value="selected disabled">Pilih Kategori</option>
-                  <option value="bunga_tangkai">Bunga Tangkai</option>
-                  <option value="tanaman_hias">Tanaman Hias</option>
-                  <option value="alat_kebun">Alat Kebun</option>
+                  <option value="bunga tangkai">Bunga tangkai</option>
+                  <option value="bouqet">Bouqet</option>
+                  <option value="tanaman hias">Tanaman hias</option>
+                  <option value="papan bunga">Papan bunga</option>
+                  <option value="alat kebun">Alat kebun</option>
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" placeholder="0" >
+                <input type="number" name="stok" class="form-control" placeholder="0" >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="50.000" >
+                <input type="text" name="harga" class="form-control" placeholder="50.000" >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" >
+                <input type="date" name="tanggal_masuk" class="form-control" >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" >
+                <input type="date" name="tanggal_expired" class="form-control" >
               </div>
 
               <div class="col-12">
                 <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
+                <input type="text" name="lokasi_rak" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
               </div>
             </div>
           </form>
@@ -120,7 +129,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-batal" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" form="formGudang" class="btn btn-simpan">Simpan</button>
+          <button type="submit" name="simpan" form="formGudang" class="btn btn-simpan">Simpan</button>
         </div>
       </div>
     </div>
@@ -137,41 +146,45 @@
         </div>
 
         <div class="modal-body">
-          <form id="formUpdateGudang">
+          <form action="php/proses.php" method="POST" id="formUpdateGudang">
             <div class="row g-4">
+              <!-- nama -->
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Masukkan nama produk">
+                <input type="text" class="form-control" placdeholer="Masukkan nama produk">
               </div>
-              
+              <!-- agama -->
               <div class="col-md-6">
                 <label class="form-label">Kategori <span class="text-danger"></span></label>
                 <select class="form-select" required>
                   <option value="selected disabled">Pilih Kategori</option>
-                  <option value="bunga_tangkai">Bunga Tangkai</option>
-                  <option value="tanaman_hias">Tanaman Hias</option>
-                  <option value="alat_kebun">Alat Kebun</option>
+                  <option value="selected disabled">Pilih Kategori</option>
+                  <option value="bunga tangkai">Bunga tangkai</option>
+                  <option value="bouqet">Bouqet</option>
+                  <option value="tanaman hias">Tanaman hias</option>
+                  <option value="papan bunga">Papan bunga</option>
+                  <option value="alat kebun">Alat kebun</option>
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" placeholder="0" >
+                <input type="number" class="form-control" placeholder="0">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="50.000" >
+                <input type="text" class="form-control" placeholder="50.000">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" >
+                <input type="date" class="form-control">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" >
+                <input type="date" class="form-control">
               </div>
 
               <div class="col-12">
@@ -184,7 +197,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-batal" data-bs-dismiss="modal" style="width: 23%;">Batalkan Perubahan</button>
-          <button type="submit" form="formUpdateGudang" class="btn btn-simpan" style="width: 23%;">Simpan Perubahan</button>
+          <button type="submit" name="update" form="formUpdateGudang" class="btn btn-simpan" style="width: 23%;">Simpan Perubahan</button>
         </div>
       </div>
     </div>
