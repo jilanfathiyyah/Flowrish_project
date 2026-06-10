@@ -81,6 +81,9 @@
 
         <div class="modal-body">
           <form action="php/proses.php" method="POST" id="formGudang">
+            <!--hidden id-->
+            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+            
             <div class="row g-4">
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
@@ -101,27 +104,27 @@
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" name="stok" class="form-control" placeholder="0" >
+                <input type="number" name="stok" class="form-control" placeholder="0" required >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" name="harga" class="form-control" placeholder="50.000" >
+                <input type="text" name="harga" class="form-control" placeholder="50.000" required >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" name="tanggal_masuk" class="form-control" >
+                <input type="date" name="tanggal_masuk" class="form-control" required >
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" name="tanggal_expired" class="form-control" >
+                <input type="date" name="tanggal_expired" class="form-control" required>
               </div>
 
               <div class="col-12">
                 <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
-                <input type="text" name="lokasi_rak" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
+                <input type="text" name="lokasi_rak" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" required >
               </div>
             </div>
           </form>
@@ -151,7 +154,7 @@
               <!-- nama -->
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placdeholer="Masukkan nama produk">
+                <input type="text" class="form-control" placdeholer="Masukkan nama produk" required>
               </div>
               <!-- agama -->
               <div class="col-md-6">
@@ -169,27 +172,27 @@
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" placeholder="0">
+                <input type="number" class="form-control" placeholder="0" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="50.000">
+                <input type="text" class="form-control" placeholder="50.000" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" required>
               </div>
 
               <div class="col-12">
                 <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" >
+                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" required>
               </div>
             </div>
           </form>
@@ -220,6 +223,7 @@
     </div>
   </div>
   <!--penutup modal hapus data-->
+
   <!--link js-->
   <script src="/js/tambah.js"></script>
   <script src="/js/updatedata.js"></script>
