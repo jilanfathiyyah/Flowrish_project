@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalElement = document.getElementById('modalBarang');
 
     // Hanya tangani penutupan modal dan reset form
-    formGudang.addEventListener('submit', function (e) {
+    formGudang.addEventListener('simpan', function (e) {
         e.preventDefault(); // Mencegah refresh halaman
 
         // 2. Tutup modal secara otomatis

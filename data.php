@@ -265,13 +265,12 @@ include "php/ambil_data.php";
       <div class="modal-content text-center p-3">
         <form action="php/proses_hapus.php" method="POST">
           <div class="modal-body">
-                <input type="hidden" name="id" id="hapus-id">
                 <i class="bi bi-exclamation-circle text-danger" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 fw-bold">Apakah anda yakin ingin menghapus data ini?</h5>
             </div>
             <div class="d-flex justify-content-center gap-2">
                 <button type="button" class="btn btn-simpan shadow-none" style="width: 30%;" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" name="delete" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
+                <button type="button" name="delete" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
             </div>
         </form> 
       </div>
