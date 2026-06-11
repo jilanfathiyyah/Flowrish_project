@@ -209,22 +209,44 @@ h2{
     color: white;
 }
 
-/*pagination*/
-.pagination{
-    margin-top: 20px;
-    text-align: center;
+.pagination {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
 }
 
-.pagination a{
+.pagination a {
     display: inline-block;
-    padding: 10px 15px;
-    margin: 0 4px;
-    background-color: #4a90e2;
+    min-width: 40px; /* Membuat kotak menjadi persegi sempurna */
+    height: 40px;
+    line-height: 40px; /* Menyeimbangkan angka tepat di tengah secara vertikal */
+    text-align: center;
+    padding: 0 6px;
+    font-size: 15px;
     color: white;
+    background-color: var(--color-primary);
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+
 }
 
-.pagination a :hover{
-    background-color: #357abd;
+/* Efek ketika kursor mouse mendekati/menyentuh tombol angka */
+.pagination a:hover {
+    color: white ;
+    background-color: var(--color-accent); /* Warna hijau sage lembut saat di-hover */
+    border-color: var(--color-border);
+    transform: translateY(-3px); /* Efek melayang sedikit ke atas */
+    box-shadow: 0 4px 10px rgba(143, 168, 131, 0.3);
+}
+
+.pagination a.active {
+    color: white ;
+    background-color: var(--color-accent);
+    cursor: default;
+    transform: none;
+    border-color: var(--color-border);
 }
