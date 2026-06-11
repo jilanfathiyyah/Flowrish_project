@@ -13,13 +13,23 @@
     <link rel="stylesheet" href="css/data.css">
 </head>
 <body>
+  
   <!--tabel-->
   <div class="container py-5">
+
       <div class="d-flex justify-content-between align-items-center">
-          <h3 class="m-0 fw-bold" ><span>Barang Gudang</span></h3>
-          <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal">
-              + Tambah Produk
-          </button>
+        <h2 class="m-0 fw-bold" ><span>Barang Gudang</span></h2>
+
+        <!-- Form Search -->
+        <form method="GET" class="search-box m-0">
+          <input type="text" name="cari" placeholder="Cari nama produk">
+          <button type="submit">Cari</button>
+        </form>
+        <!--penutup form search-->
+
+        <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal">
+          + Tambah Produk
+        </button>
       </div>
 
       <div class="table-container">
@@ -87,7 +97,7 @@
             <div class="row g-4">
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" name="produk" class="form-control" placdeholer="Masukkan nama produk">
+                <input type="text" name="produk" class="form-control" placeholder="Masukkan nama produk" required>
               </div>
               
               <div class="col-md-6">
@@ -223,6 +233,17 @@
     </div>
   </div>
   <!--penutup modal hapus data-->
+
+  <!--pagination-->
+  <div class="pagination">
+    <?php for ($i = 1; $i <= $total_halaman; $i++){ ?>
+      <a href="?halaman=<?php echo $i; ?>" class="btn btn-pagination <?php if ($i == $halaman) echo 'active'; ?>">
+        <?php echo $i; ?>
+      </a>
+    <?php } ?>
+
+  </div>
+  <!--penutup pagination-->
 
   <!--link js-->
   <script src="/js/tambah.js"></script>
