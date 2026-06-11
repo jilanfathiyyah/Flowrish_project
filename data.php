@@ -1,4 +1,7 @@
-<?php include 'php/pagination.php'; ?>
+<?php 
+include 'php/pagination.php'; 
+include "php/ambil_data.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +16,23 @@
     <link rel="stylesheet" href="css/data.css">
 </head>
 <body>
+  
   <!--tabel-->
   <div class="container py-5">
+
       <div class="d-flex justify-content-between align-items-center">
-          <h3 class="m-0 fw-bold" ><span>Barang Gudang</span></h3>
-          <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal">
-              + Tambah Produk
-          </button>
+        <h2 class="m-0 fw-bold" ><span>Barang Gudang</span></h2>
+
+        <!-- Form Search -->
+        <form method="GET" class="search-box m-0">
+          <input type="text" name="cari" placeholder="Cari nama produk">
+          <button type="submit">Cari</button>
+        </form>
+        <!--penutup form search-->
+
+        <button data-bs-target="#modalBarang" class="btn btn-tambah" data-bs-toggle="modal">
+          + Tambah Produk
+        </button>
       </div>
 
       <div class="table-container">
@@ -52,24 +65,26 @@
                       <td><?php echo $data['tanggal_expired']; ?></td>
                       <td><?php echo $data['lokasi_rak']; ?></td>
                       <td class="justify-center">
-                          <button  type="button"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#modalUpdateBarang"
-                            class="btn btn-action btn-update"
-                            data-id="<?php echo $data['id']; ?>"
-                            data-produk="<?php echo $data['produk']; ?>
-                            data-kategori="<?php echo $data['kategori']; ?>"
-                            data-stok="<?php echo $data['stok']; ?>"
-                            data-harga="<?php echo $data['harga']; ?>"
-                            data-tanggal_masuk="<?php echo $data['tanggal_masuk']; ?>"
-                            data-tanggal_expired="<?php echo $data['tanggal_expired']; ?>"
-                            data-lokasi_rak="<?php echo $data['lokasi_rak']; ?>">
-                              <i class="bi bi-pencil-square"></i>
-                          </button>
-                          <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" 
-                          data-id="<?php echo $data['id']; ?>">
-                              <i class="bi bi-trash"></i>
-                          </button>
+
+                        <button type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalUpdateBarang"
+                          class="btn btn-action btn-update"
+                          data-id="<?php echo $data['id']; ?>"
+                          data-produk="<?php echo $data['produk']; ?>"
+                          data-kategori="<?php echo $data['kategori']; ?>"
+                          data-stok="<?php echo $data['stok']; ?>"
+                          data-harga="<?php echo $data['harga']; ?>"
+                          data-tanggal_masuk="<?php echo $data['tanggal_masuk']; ?>"
+                          data-tanggal_expired="<?php echo $data['tanggal_expired']; ?>"
+                          data-lokasi_rak="<?php echo $data['lokasi_rak']; ?>">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+
+                        <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" 
+                          data-id="<?php echo isset($data['id']) ? $data['id'] : ''; ?>">
+                          <i class="bi bi-trash"></i>
+                        </button>
                       </td>
                   </tr>
                 <?php
@@ -92,13 +107,11 @@
 
         <div class="modal-body">
           <form action="php/proses.php" method="POST" id="formGudang">
-            <!--hidden id-->
-            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-            
+          
             <div class="row g-4">
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" name="produk" class="form-control" placdeholer="Masukkan nama produk">
+                <input type="text" name="produk" class="form-control" placeholder="Masukkan nama produk" required>
               </div>
               
               <div class="col-md-6">
@@ -162,52 +175,75 @@
         <div class="modal-body">
           <form action="php/proses_ubah.php" method="POST" id="formUpdateGudang">
             <div class="row g-4">
-              <!-- hidden id -->
-              <input type="hidden" name="id" id="update-id">
+              <!--hidden id-->
+              <input type="hidden" name="id" id="update-id" value="<?php echo isset($data['id']) ? $data['id'] : ''; ?>">
               <!-- nama -->
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" name="produk" id="update-produk" class="form-control" required>
+                <input type="text" name="produk" id="update-produk"
+                value="<?php echo isset($data['produk']) ? $data['produk'] : ''; ?>"
+                class="form-control" required>
               </div>
-              <!-- agama -->
+              <!-- kategori -->
               <div class="col-md-6">
                 <label class="form-label">Kategori <span class="text-danger"></span></label>
-                <select name="kategori" id="update-kategori" class="form-select" required>
-                  <option value="selected disabled">Pilih Kategori</option>
-                  <option value="bunga tangkai">Bunga tangkai</option>
-                  <option value="bouqet">Buket</option>
 
-                  <option value="tanaman hias">Tanaman hias</option>
+                <select name="kategori" id="update-kategori" class="form-select" required>
+                  <option value="" disabled <?php echo !isset($data['kategori']) ? 'selected' : ''; ?>
+                    >Pilih Kategori</option>
+                    
+                  <option value="bunga tangkai" <?php echo (isset($data['kategori']) && $data['kategori'] == 'bunga tangkai') ? 'selected' : ''; ?>
+                    >Bunga tangkai</option>
+                    
+                  <option value="bouqet" <?php echo (isset($data['kategori']) &&  $data['kategori'] == 'bouqet') ? 'selected' : ''; ?>
+                    >Bouqet</option>
+                    
+                  <option value="tanaman hias" <?php echo (isset($data['kategori']) && $data['kategori'] == 'tanaman hias') ? 'selected' : ''; ?>
+                    >Tanaman hias</option>
+                    
+                  <option value="papan bunga" <?php echo (isset($data['kategori']) && $data['kategori'] == 'papan bunga') ? 'selected' : ''; ?>
+                    >Papan bunga</option>
+                    
+                  <option value="alat kebun" <?php echo (isset($data['kategori']) && $data['kategori'] == 'alat kebun') ? 'selected' : ''; ?>
+                    >Alat kebun</option>
                   
-                  <option value="papan bunga">Papan bunga</option>
-                  
-                  <option value="alat kebun">Alat kebun</option>
+
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" name="stok" id="update-stok" class="form-control" required>
+                <input type="number" name="stok" id="update-stok" 
+                value="<?php echo isset($data['stok']) ? $data['stok'] : ''; ?>"
+                class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" name="harga" id="update-harga" class="form-control" required>
+                <input type="text" name="harga" id="update-harga" 
+                value="<?php echo isset($data['harga']) ? $data['harga'] : ''; ?>"
+                class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" name="tanggal_masuk" id="update-tanggal_masuk" class="form-control" required>
+                <input type="date" name="tanggal_masuk" id="update-tanggal_masuk" 
+                value="<?php echo isset($data['tanggal_masuk']) ? $data['tanggal_masuk'] : ''; ?>"
+                class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" name="tanggal_expired" id="update-tanggal_expired" class="form-control" required>
+                <input type="date" name="tanggal_expired" id="update-tanggal_expired" 
+                value="<?php echo isset($data['tanggal_expired']) ? $data['tanggal_expired'] : ''; ?>"
+                class="form-control" required>
               </div>
 
               <div class="col-12">
                 <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
-                <input type="text" name="lokasi_rak" id="update-lokasi_rak" class="form-control" required>
+                <input type="text" name="lokasi_rak" id="update-lokasi_rak" 
+                value="<?php echo isset($data['lokasi_rak']) ? $data['lokasi_rak'] : ''; ?>"
+                class="form-control" required>
               </div>
             </div>
           </form>
@@ -242,6 +278,17 @@
     </div>
   </div>
   <!--penutup modal hapus data-->
+
+  <!--pagination-->
+  <div class="pagination">
+    <?php for ($i = 1; $i <= $total_halaman; $i++){ ?>
+      <a href="?halaman=<?php echo $i; ?>" class="btn btn-pagination <?php if ($i == $halaman) echo 'active'; ?>">
+        <?php echo $i; ?>
+      </a>
+    <?php } ?>
+
+  </div>
+  <!--penutup pagination-->
 
   <!--link js-->
   <script src="js/tambah.js"></script>

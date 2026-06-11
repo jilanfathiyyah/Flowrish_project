@@ -18,8 +18,42 @@ body {
     margin-top: 50px;
 }
 
+/*search*/
+.search-box{
+    width: 35%;
+    height: 40px;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    gap: 10px;
+    margin: 20px auto 30px auto;
+}
+
+.search-box input{
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.search-box button{
+    padding: 15px ;
+    border: none;
+    background-color: var(--color-primary) ;
+    color: white;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.search-box button:hover{
+    background-color: var(--color-accent);
+}
+
 /* tombol tambah */
-h3{
+h2{
     color: white;
     font-weight: bold;
 }
@@ -173,4 +207,24 @@ h3{
 .btn-batal:hover {
     background-color: var(--color-accent);
     color: white;
+}
+
+/*pagination*/
+.pagination{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a{
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 4px;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.pagination a :hover{
+    background-color: #357abd;
 }
