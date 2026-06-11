@@ -1,9 +1,6 @@
 <?php
 // Memanggil file koneksi
 include 'koneksi.php';
-
-// Pastikan tombol dengan name="delete" ditekan
-if (isset($_POST['delete'])) {
     // Menangkap ID dari input hidden modal hapus
     $id = $_POST['id'];
     $id = mysqli_real_escape_string($koneksi, $id);
@@ -20,5 +17,5 @@ if (isset($_POST['delete'])) {
     } else {
         echo "Data gagal dihapus! Error: " . mysqli_error($koneksi);
     }
-} 
+
 ?>
