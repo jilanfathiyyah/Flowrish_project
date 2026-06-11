@@ -52,11 +52,22 @@
                       <td><?php echo $data['tanggal_expired']; ?></td>
                       <td><?php echo $data['lokasi_rak']; ?></td>
                       <td class="justify-center">
-                          <button href="#formUpdateGudang?id=<?php echo $data['id']; ?>" data-bs-toggle="modal" data-bs-target="#modalUpdateBarang"
-                            class="btn btn-action btn-update">
+                          <button  type="button"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modalUpdateBarang"
+                            class="btn btn-action btn-update"
+                            data-id="<?php echo $data['id']; ?>"
+                            data-produk="<?php echo $data['produk']; ?>
+                            data-kategori="<?php echo $data['kategori']; ?>"
+                            data-stok="<?php echo $data['stok']; ?>"
+                            data-harga="<?php echo $data['harga']; ?>"
+                            data-tanggal_masuk="<?php echo $data['tanggal_masuk']; ?>"
+                            data-tanggal_expired="<?php echo $data['tanggal_expired']; ?>"
+                            data-lokasi_rak="<?php echo $data['lokasi_rak']; ?>">
                               <i class="bi bi-pencil-square"></i>
                           </button>
-                          <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" onclick="hapusProduk(this)">
+                          <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" 
+                          data-id="<?php echo $data['id']; ?>">
                               <i class="bi bi-trash"></i>
                           </button>
                       </td>
@@ -149,50 +160,54 @@
         </div>
 
         <div class="modal-body">
-          <form action="php/proses.php" method="POST" id="formUpdateGudang">
+          <form action="php/proses_ubah.php" method="POST" id="formUpdateGudang">
             <div class="row g-4">
+              <!-- hidden id -->
+              <input type="hidden" name="id" id="update-id">
               <!-- nama -->
               <div class="col-md-6">
                 <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placdeholer="Masukkan nama produk" required>
+                <input type="text" name="produk" id="update-produk" class="form-control" required>
               </div>
               <!-- agama -->
               <div class="col-md-6">
                 <label class="form-label">Kategori <span class="text-danger"></span></label>
-                <select class="form-select" required>
-                  <option value="selected disabled">Pilih Kategori</option>
+                <select name="kategori" id="update-kategori" class="form-select" required>
                   <option value="selected disabled">Pilih Kategori</option>
                   <option value="bunga tangkai">Bunga tangkai</option>
-                  <option value="bouqet">Bouqet</option>
+                  <option value="bouqet">Buket</option>
+
                   <option value="tanaman hias">Tanaman hias</option>
+                  
                   <option value="papan bunga">Papan bunga</option>
+                  
                   <option value="alat kebun">Alat kebun</option>
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Stok Barang <span class="text-danger">*</span></label>
-                <input type="number" class="form-control" placeholder="0" required>
+                <input type="number" name="stok" id="update-stok" class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Harga Satuan (Rp) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="50.000" required>
+                <input type="text" name="harga" id="update-harga" class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" required>
+                <input type="date" name="tanggal_masuk" id="update-tanggal_masuk" class="form-control" required>
               </div>
 
               <div class="col-md-6">
                 <label class="form-label">Tanggal Kadaluarsa <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" required>
+                <input type="date" name="tanggal_expired" id="update-tanggal_expired" class="form-control" required>
               </div>
 
               <div class="col-12">
                 <label class="form-label">Lokasi Penempatan (Rak) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Contoh: Rak A-1 atau Gudang B" required>
+                <input type="text" name="lokasi_rak" id="update-lokasi_rak" class="form-control" required>
               </div>
             </div>
           </form>
@@ -210,16 +225,19 @@
 
   <!--pembuka modal hapus data-->
   <div class="modal fade" id="modalHapusBarang" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm"> <div class="modal-content text-center p-3">
-            <div class="modal-body">
+    <div class="modal-dialog modal-dialog-centered modal-sm"> 
+      <div class="modal-content text-center p-3">
+        <form action="php/proses_hapus.php" method="POST">
+          <div class="modal-body">
                 <i class="bi bi-exclamation-circle text-danger" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 fw-bold">Apakah anda yakin ingin menghapus data ini?</h5>
             </div>
             <div class="d-flex justify-content-center gap-2">
                 <button type="button" class="btn btn-simpan shadow-none" style="width: 30%;" data-bs-dismiss="modal">Batal</button>
-                <button type="button" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
+                <button type="button" name="delete" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
             </div>
-        </div>
+        </form> 
+      </div>
     </div>
   </div>
   <!--penutup modal hapus data-->
