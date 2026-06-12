@@ -12,7 +12,7 @@ if (isset($_POST['update'])) {
     $tanggal_expired = $_POST['tanggal_expired'];
     $lokasi_rak = $_POST['lokasi_rak'];
 
-    // Menjalankan query update berdasarkan ID
+    // menjalankan query update berdasarkan ID
     $query_update = "UPDATE daftar_flowrish SET
         produk = '$produk',
         kategori = '$kategori',
@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
         tanggal_expired = '$tanggal_expired',
         lokasi_rak = '$lokasi_rak'
         WHERE id = '$id'";
-    $update = mysqli_query($koneksi, $query_update);
+    $update = mysqli_query($koneksi, $query_update); //menjalankan ke database
 
     if ($update) {
         header("Location: ../data.php");
