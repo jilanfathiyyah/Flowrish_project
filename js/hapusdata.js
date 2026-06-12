@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (modalHapus) {
         modalHapus.addEventListener('show.bs.modal', function (event) {
-            // 1. Ambil tombol tempat sampah yang diklik
+            // mengambil fungsi tombol delete
             const button = event.relatedTarget;
 
-            // 2. Ambil angka ID dari atribut data-id tombol tersebut
+            // menganbil data id dari tombol bagian iitu
             const id = button.getAttribute('data-id');
 
-            // 3. Masukkan angka ID ke dalam input hidden di modal hapus
-            const inputId = document.getElementById('hapus-id'); // <-- PASTIKAN NAMA ID INI SAMA!
+            // menghubungkan id hidden
+            const inputId = document.getElementById('hapus-id'); //nama id ini hrs sma dgn id di tag input hidden id bagian modul hapus
             if (inputId) {
                 inputId.value = id;
             }
