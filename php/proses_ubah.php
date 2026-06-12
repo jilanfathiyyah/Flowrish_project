@@ -2,16 +2,6 @@
 //memanggil file koneksi
 include 'koneksi.php';
 
-//mengambil id dari url
-$id = $_GET['id'];
-
-$query = mysqli_query(
-    $koneksi,
-    "SELECT * FROM daftar_flowrish WHERE id='$id'"
-);
-
-$data = mysqli_fetch_array ($query);
-
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $produk = $_POST['produk'];

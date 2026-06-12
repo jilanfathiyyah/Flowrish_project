@@ -1,4 +1,4 @@
-// Ambil element modal hapus
+// element modal hapus
 const modalHapus = document.getElementById('modalHapusBarang');
 
 // Deteksi saat modal hapus mulai terbuka di layar

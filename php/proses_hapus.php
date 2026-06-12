@@ -1,17 +1,17 @@
 <?php
-// Memanggil file koneksi
+// memanggil file koneksi
 include 'koneksi.php';
-    // Menangkap ID dari input hidden modal hapus
+    // mengambil id dari input hidden modal hapus
     $id = $_POST['id'];
     $id = mysqli_real_escape_string($koneksi, $id);
 
-    // Jalankan query hapus
+    // jalankan query hapus
     $query_hapus = "DELETE FROM daftar_flowrish WHERE id = '$id'";
     $hapus = mysqli_query($koneksi, $query_hapus);
 
-    // Cek keberhasilan query
+    // cek keberhasilan query
     if ($hapus) {
-        // Kembali ke halaman utama setelah berhasil menghapus
+        // kmbali ke hlmn utama
         header("Location: ../data.php");
         exit();
     } else {

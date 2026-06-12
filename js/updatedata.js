@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalUpdateBarang = document.getElementById('modalUpdateBarang');
     
     if (modalUpdateBarang) {
-        // Logika 1: Berjalan SAAT MODAL AKAN DIBUKA (Membawa data dari tabel ke input modal)
+        // klw modal update dibuka, data di tabel db, akan masuk ke modal update nya
         modalUpdateBarang.addEventListener('show.bs.modal', function (event) {
-            // Tombol (ikon pensil) yang diklik oleh user
+            // di klik tombol update, dia akan mengambil data yg id nya di klik
             const button = event.relatedTarget;
             
-            // Ambil semua data dari atribut data-* tombol
+            // ambil semua data di php dan db dari atribut data tombol
             const id = button.getAttribute('data-id');
             const produk = button.getAttribute('data-produk');
             const kategori = button.getAttribute('data-kategori');
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const tglExpired = button.getAttribute('data-tanggal_expired');
             const lokasiRak = button.getAttribute('data-lokasi_rak');
             
-            // Masukkan data tersebut ke dalam input form modal secara otomatis
+            // datanya masuk ke form update di modal update
             if(document.getElementById('update-id')) document.getElementById('update-id').value = id;
             if(document.getElementById('update-produk')) document.getElementById('update-produk').value = produk;
             if(document.getElementById('update-kategori')) document.getElementById('update-kategori').value = kategori;
@@ -29,11 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Logika 2: Berjalan SAAT FORM DISUBMIT
+    // tombol simpan perubahan di klik, modal update akan tetertutup, dan data yg diubah tersmpan
     const formUpdateGudang = document.getElementById('formUpdateGudang');
     if (formUpdateGudang) {
         formUpdateGudang.addEventListener('submit', function(e) {
-            // JANGAN gunakan e.preventDefault() agar form bisa berpindah ke php/proses_ubah.php!
             
             let modalUpdate = document.getElementById('modalUpdateBarang');
             let instanceUpdate = bootstrap.Modal.getInstance(modalUpdate);

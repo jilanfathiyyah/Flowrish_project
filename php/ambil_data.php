@@ -1,5 +1,5 @@
 <?php
-// File ini khusus untuk mengambil data sebelum modal tampil
+// file ini khusus untuk mengambil data sebelum modal tampil
 $data = null; 
 
 if (isset($_GET['edit_id'])) {
