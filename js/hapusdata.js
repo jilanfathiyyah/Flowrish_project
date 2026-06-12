@@ -1,14 +1,19 @@
-// element modal hapus
-const modalHapus = document.getElementById('modalHapusBarang');
+document.addEventListener('DOMContentLoaded', function () {
+    const modalHapus = document.getElementById('modalHapusBarang');
 
-// Deteksi saat modal hapus mulai terbuka di layar
-modalHapus.addEventListener('show.bs.modal', function (event) {
-    // Tombol sampah di tabel yang barusan diklik
-    let tombolHapusDiTabel = event.relatedTarget;
-    
-    // Ambil nilai ID dari data-id tombol tersebut
-    let idYangMauDihapus = tombolHapusDiTabel.getAttribute('data-id');
-    
-    // Masukkan ID-nya ke dalam input hidden milik modal hapus
-    document.getElementById('hapus-id').value = idYangMauDihapus;
+    if (modalHapus) {
+        modalHapus.addEventListener('show.bs.modal', function (event) {
+            // 1. Ambil tombol tempat sampah yang diklik
+            const button = event.relatedTarget;
+
+            // 2. Ambil angka ID dari atribut data-id tombol tersebut
+            const id = button.getAttribute('data-id');
+
+            // 3. Masukkan angka ID ke dalam input hidden di modal hapus
+            const inputId = document.getElementById('hapus-id'); // <-- PASTIKAN NAMA ID INI SAMA!
+            if (inputId) {
+                inputId.value = id;
+            }
+        });
+    }
 });

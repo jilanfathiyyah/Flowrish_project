@@ -81,7 +81,8 @@ include "php/ambil_data.php";
                           <i class="bi bi-pencil-square"></i>
                         </button>
 
-                        <button class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" 
+                        <button type="submit"
+                        class="btn btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" 
                           data-id="<?php echo isset($data['id']) ? $data['id'] : ''; ?>">
                           <i class="bi bi-trash"></i>
                         </button>
@@ -264,13 +265,15 @@ include "php/ambil_data.php";
     <div class="modal-dialog modal-dialog-centered modal-sm"> 
       <div class="modal-content text-center p-3">
         <form action="php/proses_hapus.php" method="POST">
+          <input type="hidden" name="id" id="hapus-id" value="<?php echo isset($data['id']) ? $data['id'] : ''; ?>">
+          
           <div class="modal-body">
                 <i class="bi bi-exclamation-circle text-danger" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 fw-bold">Apakah anda yakin ingin menghapus data ini?</h5>
             </div>
             <div class="d-flex justify-content-center gap-2">
                 <button type="button" class="btn btn-simpan shadow-none" style="width: 30%;" data-bs-dismiss="modal">Batal</button>
-                <button type="button" name="delete" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
+                <button type="submit" name="delete" id="btnKonfirmasiHapus" class="btn btn-delete">Ya, Hapus</button>
             </div>
         </form> 
       </div>
